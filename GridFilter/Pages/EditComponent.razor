@@ -1,0 +1,70 @@
+﻿@page "/EditComponent"
+@using Syncfusion.Blazor.Grids
+<h2>Edit component:Below Grid Excel Filter is not visible</h2>
+<br/>
+<div id = "ControlRegion">
+<SfGrid  ID="Grid" DataSource="@Orders"  @ref="Grid" AllowPaging="true" AllowFiltering="true" AllowReordering="true" AllowResizing="true"  AllowExcelExport="true"
+              AllowSorting="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Cancel", "Update","ExcelExport","Search"})" Height="315" Width="900">        
+        <GridEditSettings AllowAdding="false" AllowEditing="false" AllowDeleting="false" Mode="EditMode.Dialog"></GridEditSettings>
+        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+    <GridPageSettings PageSizes="true"></GridPageSettings>
+	<GridSelectionSettings Type="Syncfusion.Blazor.Grids.SelectionType.Multiple"></GridSelectionSettings>
+        <GridEvents OnToolbarClick="ToolbarClick" TValue="Order"></GridEvents>
+        <GridColumns>
+            <GridColumn Type='ColumnType.CheckBox' Width="50"></GridColumn>
+            <GridColumn Field=@nameof(Order.OrderID) HeaderText="Order ID" IsPrimaryKey="true" ValidationRules="@(new ValidationRules{ Required=true })" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(Order.CustomerID) HeaderText="Customer Name" ValidationRules="@(new ValidationRules{ Required=true })" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(Order.OrderDate) HeaderText=" Order Date" EditType="EditType.DatePickerEdit" Format="d" TextAlign="TextAlign.Right" Width="130" Type="ColumnType.Date"></GridColumn>
+            <GridColumn Field=@nameof(Order.Freight) HeaderText="Freight" Format="C2" TextAlign="TextAlign.Right" EditType="EditType.NumericEdit" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(Order.ShipCountry) HeaderText="Ship Country" EditType="EditType.DropDownEdit" Width="150"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+<br/>
+
+
+
+
+<style>
+
+    .e-grid .e-dialog.e-filter-popup.e-popup {
+        overflow: unset;
+        z-index: 2001 !important; /* to change the z-index/overflow based on your layout */
+    }
+
+</style>
+
+
+
+
+
+@code{
+        public List<Order> Orders { get; set; }
+        SfGrid<Order> Grid;
+    protected override void OnInitialized()
+    {
+        Orders = Enumerable.Range(1, 7).Select(x => new Order()
+        {
+            OrderID = 1000 + x,
+            CustomerID = (new string[] { "ALFKI", "ANANTR", "ANTON", "BLONP", "BOLID" })[new Random().Next(5)],
+            Freight = 2.1 * x,
+            OrderDate = DateTime.Now.AddDays(-x),
+            ShipCountry = (new string[] { "USA", "UK", "CHINA", "RUSSIA", "INDIA" })[new Random().Next(5)]
+        }).ToList();
+    }
+    public void ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+    {
+        if (args.Item.Id == "Grid_excelexport")
+        {
+                this.Grid.ExportToExcelAsync();
+        }
+    }
+    public class Order
+    {
+        public int OrderID { get; set; }
+        public string CustomerID { get; set; }
+        public DateTime OrderDate { get; set; }
+        public double Freight { get; set; }
+        public string ShipCountry { get; set; }
+    }
+}

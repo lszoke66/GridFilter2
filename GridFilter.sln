@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridFilter", "GridFilter\GridFilter.csproj", "{47C1EC61-C733-42B1-B2CE-1A264E369C9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47C1EC61-C733-42B1-B2CE-1A264E369C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C1EC61-C733-42B1-B2CE-1A264E369C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C1EC61-C733-42B1-B2CE-1A264E369C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C1EC61-C733-42B1-B2CE-1A264E369C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34D9823F-2E19-4EDB-8F69-81D69EB48385}
+	EndGlobalSection
+EndGlobal
